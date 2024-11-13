@@ -3,7 +3,7 @@ from discord.ext.commands import Bot
 from discord.ext import commands
 import os
 import sys
-
+import asyncio
 import help_info
 import config_vars
 
@@ -143,11 +143,15 @@ async def amicool(ctx):
         )
 
 
-if __name__ == "__main__":
+async def setup():
     sys.path.insert(1, os.getcwd() + "/cogs/")
     for extension in extensions:
         try:
-            bot.load_extension(extension)
+            await bot.load_extension(extension)
         except Exception as e:
             print(f"Failed to load cogs : {e}")
+
+
+if __name__ == "__main__":
+    asyncio.run(setup())
     bot.run(config_vars.discord_token)
