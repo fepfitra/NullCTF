@@ -1,4 +1,4 @@
-FROM python:3.7.8-alpine
+FROM python:3.10.15-bookworm
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
